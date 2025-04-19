@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recommended Music</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      background-color: #f0f0f0;
+      margin: 8px 0;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 18px;
+      color: #555;
+    }
+
+    p {
+      font-size: 16px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Recommended Music</h2>
+    {% if musics %}
+      <ul>
+        {% for music in musics %}
+          <li>{{ music }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No recommendations found.</p>
+    {% endif %}
+  </div>
+</body>
+</html>
+
