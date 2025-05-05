@@ -3,7 +3,7 @@ gunicorn==20.1.0
 pandas
 numpy
 scikit-learn
-scipy==1.9.3
+scipy
 matplotlib==3.6.2
 seaborn==0.11.2
 
