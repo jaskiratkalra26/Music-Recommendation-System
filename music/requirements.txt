@@ -1,7 +1,7 @@
-Django==4.2.3
+Django
 gunicorn==20.1.0
-pandas==1.5.3
-numpy==1.23.5
+pandas
+numpy
 scikit-learn
 scipy==1.9.3
 matplotlib==3.6.2
