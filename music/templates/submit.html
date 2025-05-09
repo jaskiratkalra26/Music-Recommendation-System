@@ -47,6 +47,7 @@
 </head>
 <body>
   <div class="container">
+    {% csrf_token %} 
     <h2>Recommended Music</h2>
     {% if musics %}
       <ul>

@@ -19,7 +19,8 @@ def recommend(music):
     return musics
 
 
-
+from django.views.decorators.csrf import requires_csrf_token
+@requires_csrf_token
 
 def index(request):
     newdf = data['newdf']
