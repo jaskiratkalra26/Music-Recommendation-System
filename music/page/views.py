@@ -2,7 +2,24 @@ from django.shortcuts import render,HttpResponse
 from page.models import Song
 
 
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+from dotenv import load_dotenv
+import os
+import base64
+load_dotenv()
+client_id = os.getenv('client_id')
+client_secret = os.getenv('client_secret')
 
+def get_url(Song):
+    auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
+    sp = spotipy.Spotify(auth_manager=auth_manager)
+
+    results = sp.search(q=Song, type='track', limit=1)
+    track = results['tracks']['items'][0]
+
+    album_images = track['album']['images']
+    return album_images[0]['url']
 # Create your views here.
 import pickle
 with open('recommendation_system.pkl','rb') as file:
@@ -38,9 +55,22 @@ def Data(request):
         
         Data.save()
         musics = recommend(str(choice).strip())
-        print(musics)
+        cover_url = []
+        for i in musics:
+            cover_url.append(get_url(i))
+        final = [(music,url) for music,url in zip(musics,cover_url)]
+        
+        
     
-    return render(request,'submit.html',{'musics':musics})
+    return render(request,'submit.html',{'musics':final})
+
+
+
+
+
+
+    
+
 
 
 

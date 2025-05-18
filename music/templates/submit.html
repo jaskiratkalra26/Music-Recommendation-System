@@ -11,54 +11,87 @@
     }
 
     .container {
-      max-width: 500px;
+      max-width: 1300px;
       margin: 60px auto;
-      padding: 30px;
+      padding: 40px;
       background-color: #ffffff;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
+      border-radius: 16px;
       text-align: center;
     }
 
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      font-size: 28px;
+      color: #222;
+    }
+
+    .music-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .music-card {
+      width: 220px;
+      background-color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 12px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .music-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .image-wrapper {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+    }
+
+    .music-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0; /* No curved borders */
+    }
+
+    .music-name {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: 500;
       color: #333;
     }
 
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    ul li {
-      background-color: #f0f0f0;
-      margin: 8px 0;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 18px;
-      color: #555;
-    }
-
-    p {
-      font-size: 16px;
-      color: #777;
+    @media (max-width: 600px) {
+      .music-card {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    {% csrf_token %} 
+    {% csrf_token %}
     <h2>Recommended Music</h2>
     {% if musics %}
-      <ul>
-        {% for music in musics %}
-          <li>{{ music }}</li>
+      <div class="music-grid">
+        {% for music,url in musics %}
+          <div class="music-card">
+            <div class="image-wrapper">
+              <img src="{{url}}" alt="{{music}}">
+            </div>
+            <div class="music-name">{{ music}}</div>
+          </div>
         {% endfor %}
-      </ul>
+      </div>
     {% else %}
       <p>No recommendations found.</p>
     {% endif %}
   </div>
 </body>
 </html>
-
