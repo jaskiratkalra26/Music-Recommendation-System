@@ -45,7 +45,7 @@ def index(request):
     
     return render(request,'base.html',{'options':options})
 
-
+final = []
 def Data(request):
     if request.method == "POST":
         choice = request.POST.get('choice')
